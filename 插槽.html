@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--这里不写slot="first"这个控制台会报错，但是内容还是会展示出来-->
+    <!--<mycomp><button>第一个按钮</button><button>第二个按钮</button></mycomp>-->
+    <mycomp><button slot="second">第一个按钮</button><button slot="first">第二个按钮</button></mycomp>
+</div>
+
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    //这里不写<slot></slot>标签上面的button里面的内容就无法显示
+    Vue.component('mycomp',{
+        template :"<div><slot name='first'></slot>我是组件里面的内容<slot name='second'></slot></div>"
+    })
+    let vm = new Vue({
+        el:'#app',
+        data:{
+
+        }
+    })
+</script>
+</body>
+</html>

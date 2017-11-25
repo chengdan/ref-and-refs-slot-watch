@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--<input type="text" v-model="msg">-->
+    <input type="text" v-model="person.money">
+</div>
+
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            msg : '老王是最危险的男人',
+            person:{
+                name : '老王',
+                money : 100
+            }
+        },
+        watch :{
+            msg : function (newValue,oldValue) {
+                console.log('老王被动了！！！');
+            },
+            person:{
+                handler:function (newValue,oldValue) {
+//                    console.log(newValue, oldValue);
+                    console.log('老王的钱被动了哈哈哈哈')
+                },
+                //写了deep后才能深度监视，否则改变老王的钱数是没办法检测的
+                deep:true,
+                //immediate表示当监视生效的时候，直接执行一次函数
+                immediate:true
+            }
+        }
+    })
+</script>
+</body>
+</html>
